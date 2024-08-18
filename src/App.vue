@@ -1,10 +1,13 @@
 <script setup lang="ts">
 import SearchBox from './components/SearchBox.vue'
 import RecommendApps from './components/RecommendApps.vue'
+import FreeApps from './components/FreeApps.vue'
+import Divider from './components/Divider.vue'
 </script>
 
 <template>
   <SearchBox />
-  <div style="border-bottom: solid 1px #eee"></div>
   <RecommendApps />
+  <Divider class="my-4" />
+  <FreeApps />
 </template>

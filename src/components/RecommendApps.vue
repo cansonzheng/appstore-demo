@@ -6,8 +6,7 @@ import AppItem from './AppItem.vue'
 const data = ref<AppItemModel[]>([])
 
 async function getData() {
-  const res = await api.getRecommendApps()
-  console.log(res)
+  const res = await api.getGrossingApps()
   data.value = res.feed.entry.map((v) => new AppItemModel(v))
 }
 
@@ -16,8 +15,8 @@ getData()
 
 <template>
   <div>
-    <h2>Recommend</h2>
-    <div class="flex">
+    <h2 class="text-5 px-4">Recommend</h2>
+    <div class="flex overflow-x-auto px-4 gap-4">
       <AppItem v-for="item in data" :key="item.name" :data="item" />
     </div>
   </div>

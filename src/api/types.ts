@@ -1,5 +1,5 @@
-// 推荐应用响应数据
-export type getRecommendAppsRes = {
+// 应用响应数据
+export type getAppsRes = {
   feed: {
     entry: Array<{
       "im:name": {
