@@ -1,9 +1,29 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { Search } from 'lucide-vue-next'
+defineProps<{
+  modelValue: string
+}>()
+const emits = defineEmits<{
+  (e: 'update:modelValue', v: string): void
+}>()
+
+function handleInput(e: Event) {
+  const v = (e.target as HTMLInputElement).value
+  emits('update:modelValue', v)
+}
+</script>
 
 <template>
   <div class="search-box pa-3 bg-white">
-    <div class="search-box_inner flex bg-[#f4f4f4]">
-      <input type="text" class="grow-1" placeholder="Search..." />
+    <div class="search-box_inner flex bg-[#f4f4f4] items-center gap-2">
+      <Search :size="20" color="#999" />
+      <input
+        type="text"
+        class="grow-1"
+        placeholder="Search..."
+        :value="modelValue"
+        @input="handleInput"
+      />
     </div>
   </div>
 </template>
@@ -17,7 +37,7 @@
   &_inner {
     height: var(--input-height);
     border-radius: calc(var(--input-height) / 2);
-    padding: 0 calc(var(--input-height) / 2);
+    padding: 0 calc(var(--input-height) / 2) 0 calc(var(--input-height) / 4);
     input {
       outline: none;
       border: none;

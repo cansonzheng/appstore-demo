@@ -1,17 +1,24 @@
 <script setup lang="ts">
 import { AppItemModel } from '@/models'
-
-withDefaults(
+import Rating from './Rating.vue'
+const props = withDefaults(
   defineProps<{
     horizontal?: boolean
     data: AppItemModel
     size: number
     circle?: boolean
+    rating?: boolean
   }>(),
   {
     size: 80
   }
 )
+
+// 处理高分屏的图片大小
+const iconImg = computed(() => {
+  const ratio = window.devicePixelRatio
+  return props.data.iconSize(props.size * ratio)
+})
 </script>
 
 <template>
@@ -21,11 +28,19 @@ withDefaults(
     :style="{ '--icon-width': `${size}px` }"
   >
     <div class="icon">
-      <img :class="{ 'rd-[50%]!': circle }" :alt="data.name" :src="data.icon" />
+      <img :class="{ 'rd-[50%]!': circle }" :alt="data.name" :src="iconImg" />
     </div>
     <div class="desc">
       <div class="text-truncate w-full text-4">{{ data.name }}</div>
       <div class="color-[#999] text-3 mt-1">{{ data.category }}</div>
+      <div
+        v-if="rating"
+        class="flex items-center gap-2 mt-2"
+        :class="horizontal ? '' : 'flex-wrap justify-center'"
+      >
+        <Rating :value="data.rating" />
+        <span class="color-[#999] text-3">({{ data.ratingCount }})</span>
+      </div>
     </div>
   </div>
 </template>

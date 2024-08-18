@@ -1,4 +1,4 @@
-import type { getAppsRes } from './types'
+import type { getAppsRes, lookupAppsRes } from './types'
 
 export default {
   // 获取推荐应用
@@ -9,4 +9,8 @@ export default {
   getFreeApps(limit: number = 100): Promise<getAppsRes> {
     return fetch(`https://itunes.apple.com/hk/rss/topfreeapplications/limit=${limit}/json`).then(res => res.json())
   },
+  // 查询应用数据
+  lookupApps(ids: string[]): Promise<lookupAppsRes> {
+    return fetch(`https://itunes.apple.com/hk/lookup?id=${ids.join(',')}`).then(res => res.json())
+  }
 }

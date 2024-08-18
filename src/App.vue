@@ -3,11 +3,13 @@ import SearchBox from './components/SearchBox.vue'
 import RecommendApps from './components/RecommendApps.vue'
 import FreeApps from './components/FreeApps.vue'
 import Divider from './components/Divider.vue'
+
+const keyword = ref('')
 </script>
 
 <template>
-  <SearchBox />
+  <SearchBox v-model="keyword" />
   <RecommendApps />
   <Divider class="my-4" />
-  <FreeApps />
+  <FreeApps :filterKeyword="keyword" />
 </template>
