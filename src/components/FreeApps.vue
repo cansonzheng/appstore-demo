@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import {PackageOpen} from 'lucide-vue-next'
 import { AppItemModel } from '@/models'
 import api from '@/api/index'
 import AppItem from './AppItem.vue'
@@ -54,7 +55,11 @@ getData()
 
 <template>
   <Loading :loading="loading" class="min-h-[280px]">
-    <div class="flex flex-col pa-4 pr-0 gap-3">
+    <div v-if="data.length&&!dataFilted.length" class="empty flex justify-center items-center flex-col min-h-[280px] gap-2">
+      <PackageOpen :size="48" color="#ccc" :stroke-width="1"/>
+      <div class="color-[#ccc] text-4">未找到相关应用</div>
+    </div>
+    <div v-else class="flex flex-col pa-4 pr-0 gap-4">
       <template v-for="(item, i) in dataFilted" :key="item.id">
         <Divider v-if="i" />
         <div class="flex gap-1 items-center">
