@@ -19,9 +19,9 @@ getData()
 <template>
   <div>
     <h2 class="text-5 px-4">Recommend</h2>
-    <div class="overflow-hidden">
+    <div class="overflow-hidden h-[132px]">
       <Loading :loading="loading" class="min-h-[120px]">
-        <div class="flex overflow-x-auto px-4 gap-4 pb-4 mb--2">
+        <div class="flex overflow-x-auto px-4 gap-4 pb-5 mb--3">
           <AppItem v-for="item in data" :key="item.id" :data="item" />
         </div>
       </Loading>

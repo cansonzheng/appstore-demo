@@ -59,14 +59,31 @@ getData()
       <PackageOpen :size="48" color="#ccc" :stroke-width="1"/>
       <div class="color-[#ccc] text-4">未找到相关应用</div>
     </div>
-    <div v-else class="flex flex-col pa-4 pr-0 gap-4">
-      <template v-for="(item, i) in dataFilted" :key="item.id">
-        <Divider v-if="i" />
-        <div class="flex gap-1 items-center">
-          <div class="color-[#999] text-3 flex-shrink-0 w-[2em]">{{ i + 1 }}</div>
-          <AppItem class="flex-1" :data="item" horizontal :size="64" :circle="i % 2 === 1" rating />
-        </div>
-      </template>
+    <div v-else class="flex pa-4 pr-0 gap-4 flex-wrap lt-md:flex-col">
+      <div v-for="(item, i) in dataFilted" :key="item.id" class="item flex gap-1 items-center pb-4">
+        <div class="color-[#999] text-3 flex-shrink-0 w-[2em]">{{ i + 1 }}</div>
+        <AppItem class="flex-1" :data="item" horizontal :size="64" :circle="i % 2 === 1" rating />
+      </div>
     </div>
   </Loading>
 </template>
+
+<style lang="scss" scoped>
+.item{
+  --width: 25%;
+  border-bottom: solid 1px #eee;
+  box-sizing: border-box;
+  width: calc(var(--width) - 16px);
+
+  @include media('l-down'){
+    --width: 33%;
+  }
+  @include media('m-down'){
+    --width: 50%;
+  }
+  @include media('s-down'){
+    width:100%;
+    
+  }
+}
+</style>
