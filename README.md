@@ -12,7 +12,7 @@
 
 可以使用 `corepack enable pnpm` 启用 pnpm
 
-[pnpm安装文档](https://www.pnpm.cn/installation){target="_blank"}
+[pnpm安装文档](https://www.pnpm.cn/installation)
 
 ### 项目安装
 
