@@ -9,8 +9,10 @@
 - NodeJS 18
 
 推荐使用 pnpm 安装依赖。
+
 可以使用 `corepack enable pnpm` 启用 pnpm
-[pnpm安装文档](https://www.pnpm.cn/installation)
+
+[pnpm安装文档](https://www.pnpm.cn/installation){target="_blank"}
 
 ### 项目安装
 
