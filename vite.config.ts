@@ -35,6 +35,23 @@ export default defineConfig({
         cleanupOutdatedCaches: false,
         globPatterns: [
           '**/*.{js,css,html,ico,png,svg}'
+        ],
+        runtimeCaching:[
+          // 应用图标缓存
+          {
+            urlPattern: /^https:\/\/is1-ssl\.mzstatic\.com\/image\/thumb\/.*/i,
+            handler: 'CacheFirst',
+            options: {
+              cacheName: 'app-icon-cache',
+              expiration: {
+                maxEntries: 300,
+                maxAgeSeconds: 60 * 60 * 24 * 7 // 7天
+              },
+              cacheableResponse: {
+                statuses: [0, 200]
+              }
+            }
+          }
         ]
       },
       manifest: {
