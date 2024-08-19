@@ -7,14 +7,6 @@ import UnoCSS from 'unocss/vite'
 import { VitePWA } from 'vite-plugin-pwa'
 
 // https://vitejs.dev/config/
-
-
-const manifestIcons=[128,144,152,167,180,192,256,512].map(n=>({
-  src: `icons/${n}.png`,
-  sizes: `${n}x${n}`,
-  type: 'image/png'
-}))
-
 export default defineConfig({
   plugins: [
     vue(),
@@ -32,7 +24,6 @@ export default defineConfig({
       injectRegister: 'auto',
       registerType: 'autoUpdate',
       workbox: {
-        cleanupOutdatedCaches: false,
         globPatterns: [
           '**/*.{js,css,html,ico,png,svg}'
         ],
@@ -60,7 +51,32 @@ export default defineConfig({
         description: 'AppStore Demo',
         theme_color: '#ffffff',
         display: "standalone",
-        icons: manifestIcons
+        icons: [
+          {
+            "src": "/pwa/pwa-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "any"
+          },
+          {
+            "src": "/pwa/pwa-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any"
+          },
+          {
+            "src": "/pwa/pwa-maskable-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "maskable"
+          },
+          {
+            "src": "/pwa/pwa-maskable-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "maskable"
+          }
+        ]
       }
     })
   ],

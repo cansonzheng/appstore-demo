@@ -16,7 +16,7 @@
     "type-check": "vue-tsc --build --force",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
     "format": "prettier --write src/",
-    "build:gh-pages":"vite build --base=/appstore-demo/"
+    "build:gh-pages": "vite build --base=/appstore-demo/"
   },
   "dependencies": {
     "lucide-vue-next": "^0.428.0",
@@ -46,5 +46,6 @@
     "vite-plugin-pwa": "^0.20.1",
     "vitest": "^1.6.0",
     "vue-tsc": "^2.0.21"
-  }
+  },
+  "packageManager": "pnpm@8.7.5+sha512.588f1665bf3d522ab9c768ddcf83dc40c1bda2f4e75dc0c2129a047243d8213db30fcffe744855a333e54fb6eedd6901804d2e4c046d83220a005b7e2295b671"
 }
