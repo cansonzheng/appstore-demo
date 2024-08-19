@@ -1,7 +1,11 @@
 {
   "name": "appstore-demo",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "private": true,
+  "author": {
+    "name": "Canson",
+    "email": "z@zcc.ren"
+  },
   "type": "module",
   "scripts": {
     "dev": "vite",

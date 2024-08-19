@@ -1,45 +1,31 @@
 # Appstore Demo
 
-This template should help get you started developing with Vue 3 in Vite.
+使用 vue3 开发的仿 AppStore 应用列表页面
 
-## Recommended IDE Setup
+- 演示地址：https://appstore-demo.cansonz.com/
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+### 推荐环境
 
-## Type Support for `.vue` Imports in TS
+- NodeJS 18
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
+推荐使用 pnpm 安装依赖。
+可以使用 `corepack enable pnpm` 启用 pnpm
+[pnpm安装文档](https://www.pnpm.cn/installation)
 
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## Project Setup
+### 项目安装
 
 ```sh
-npm install
+pnpm install
 ```
 
-### Compile and Hot-Reload for Development
+### 开发模式
 
 ```sh
-npm run dev
+pnpm run dev
 ```
 
-### Type-Check, Compile and Minify for Production
+### 打包
 
 ```sh
-npm run build
-```
-
-### Run Unit Tests with [Vitest](https://vitest.dev/)
-
-```sh
-npm run test:unit
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
+pnpm run build
 ```
