@@ -10,6 +10,6 @@ const keyword = ref('')
 <template>
   <SearchBox v-model="keyword" />
   <RecommendApps />
-  <Divider class="my-4" />
+  <Divider class="mb-4 mt-3" />
   <FreeApps :filterKeyword="keyword" />
 </template>

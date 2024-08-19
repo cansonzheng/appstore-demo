@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Search } from 'lucide-vue-next'
+import { Search,CircleX } from 'lucide-vue-next'
 defineProps<{
   modelValue: string
 }>()
@@ -14,7 +14,7 @@ function handleInput(e: Event) {
 </script>
 
 <template>
-  <div class="search-box pa-3 bg-white">
+  <div class="search-box pa-3 bg-white z-[10]">
     <div class="search-box_inner flex bg-[#f4f4f4] items-center gap-2">
       <Search :size="20" color="#999" />
       <input
@@ -24,6 +24,7 @@ function handleInput(e: Event) {
         :value="modelValue"
         @input="handleInput"
       />
+      <CircleX v-if="modelValue" :size="18" color="#999" @click="emits('update:modelValue', '')"/>
     </div>
   </div>
 </template>
@@ -37,7 +38,7 @@ function handleInput(e: Event) {
   &_inner {
     height: var(--input-height);
     border-radius: calc(var(--input-height) / 2);
-    padding: 0 calc(var(--input-height) / 2) 0 calc(var(--input-height) / 4);
+    padding: 0 calc(var(--input-height) / 4);
     input {
       outline: none;
       border: none;

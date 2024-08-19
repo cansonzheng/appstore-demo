@@ -3,11 +3,13 @@ import { AppItemModel } from '@/models'
 import api from '@/api/index'
 import AppItem from './AppItem.vue'
 import Divider from './Divider.vue'
+import Loading from './Loading.vue'
 
 const props = defineProps<{
   filterKeyword?: string
 }>()
 
+const loading=ref(false)
 const data = ref<AppItemModel[]>([])
 const dataFilted = computed(() => {
   if (!props.filterKeyword) return data.value
@@ -24,7 +26,9 @@ const dataFilted = computed(() => {
 
 // 获取应用数据
 async function getData() {
+  loading.value=true
   const res = await api.getFreeApps()
+  loading.value=false
   data.value = res.feed.entry.map((v) => new AppItemModel(v))
   getAppRating()
 }
@@ -49,13 +53,15 @@ getData()
 </script>
 
 <template>
-  <div class="flex flex-col pa-4 pr-0 gap-3">
-    <template v-for="(item, i) in dataFilted" :key="item.id">
-      <Divider v-if="i" />
-      <div class="flex gap-1 items-center">
-        <div class="color-[#999] text-3 flex-shrink-0 w-[2em]">{{ i + 1 }}</div>
-        <AppItem class="flex-1" :data="item" horizontal :size="64" :circle="i % 2 === 1" rating />
-      </div>
-    </template>
-  </div>
+  <Loading :loading="loading" class="min-h-[280px]">
+    <div class="flex flex-col pa-4 pr-0 gap-3">
+      <template v-for="(item, i) in dataFilted" :key="item.id">
+        <Divider v-if="i" />
+        <div class="flex gap-1 items-center">
+          <div class="color-[#999] text-3 flex-shrink-0 w-[2em]">{{ i + 1 }}</div>
+          <AppItem class="flex-1" :data="item" horizontal :size="64" :circle="i % 2 === 1" rating />
+        </div>
+      </template>
+    </div>
+  </Loading>
 </template>

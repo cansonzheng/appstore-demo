@@ -3,5 +3,11 @@ import 'virtual:uno.css'
 
 import { createApp } from 'vue'
 import App from './App.vue'
+import { setupDirectives } from './directives'
 
-createApp(App).mount('#app')
+const app = createApp(App)
+
+// 安装自定义指令
+setupDirectives(app)
+
+app.mount('#app')

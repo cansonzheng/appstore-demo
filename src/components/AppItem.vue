@@ -14,11 +14,16 @@ const props = withDefaults(
   }
 )
 
-// 处理高分屏的图片大小
-const iconImg = computed(() => {
-  const ratio = window.devicePixelRatio
-  return props.data.iconSize(props.size * ratio)
-})
+// 图标图片
+const iconImg = ref('')
+// 处理图片懒加载
+function intersect(visible:boolean){
+  if(visible){
+    // 图片大小，计算高分屏的多倍大小
+    const size = props.size * window.devicePixelRatio
+    iconImg.value = props.data.customIconSize(size)
+  }
+}
 </script>
 
 <template>
@@ -26,9 +31,9 @@ const iconImg = computed(() => {
     class="app-item flex-shrink-0"
     :class="{ horizontal }"
     :style="{ '--icon-width': `${size}px` }"
+    v-intersect="intersect"
   >
-    <div class="icon">
-      <img :class="{ 'rd-[50%]!': circle }" :alt="data.name" :src="iconImg" />
+    <div class="icon" :class="{ 'rd-[50%]!': circle }" :style="iconImg?{backgroundImage:`url(${iconImg})`}:{}">
     </div>
     <div class="desc">
       <div class="text-truncate w-full text-4">{{ data.name }}</div>
@@ -47,27 +52,25 @@ const iconImg = computed(() => {
 
 <style lang="scss" scoped>
 .app-item {
-  img {
-    width: 100%;
-    vertical-align: top;
+  .icon {
+    width: var(--icon-width);
+    height: var(--icon-width);
     border-radius: calc(var(--icon-width) * 0.2);
+    flex-shrink: 0;
+    background: 50% no-repeat #fafafa;
+    background-size: 100% 100%;
   }
   &:not(.horizontal) {
     width: var(--icon-width);
     flex-direction: column;
     text-align: center;
     .icon {
-      width: 100%;
       margin-bottom: 8px;
     }
   }
   &.horizontal {
     display: flex;
     gap: 16px;
-    .icon {
-      width: var(--icon-width);
-      flex-shrink: 0;
-    }
     .desc {
       width: 0;
       flex-grow: 1;

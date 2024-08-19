@@ -23,7 +23,7 @@ export class AppItemModel {
   summary: string = '' // 描述
 
   // 自定义图标大小
-  iconSize(size: number) {
+  customIconSize(size: number) {
     return this.icon.replace(/\d+x\d+/, `${size}x${size}`)
   }
 }
