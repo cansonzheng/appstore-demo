@@ -6,6 +6,13 @@ import vue from '@vitejs/plugin-vue'
 import UnoCSS from 'unocss/vite'
 import { VitePWA } from 'vite-plugin-pwa'
 
+
+const manifestIcons=[128,144,152,167,180,192,256,512].map(n=>({
+  src: `pwa/${n}.png`,
+  sizes: `${n}x${n}`,
+  type: 'image/png'
+}))
+
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
@@ -51,32 +58,7 @@ export default defineConfig({
         description: 'AppStore Demo',
         theme_color: '#ffffff',
         display: "standalone",
-        icons: [
-          {
-            "src": "pwa/pwa-192x192.png",
-            "sizes": "192x192",
-            "type": "image/png",
-            "purpose": "any"
-          },
-          {
-            "src": "pwa/pwa-512x512.png",
-            "sizes": "512x512",
-            "type": "image/png",
-            "purpose": "any"
-          },
-          {
-            "src": "pwa/pwa-maskable-192x192.png",
-            "sizes": "192x192",
-            "type": "image/png",
-            "purpose": "maskable"
-          },
-          {
-            "src": "pwa/pwa-maskable-512x512.png",
-            "sizes": "512x512",
-            "type": "image/png",
-            "purpose": "maskable"
-          }
-        ]
+        icons: manifestIcons
       }
     })
   ],
